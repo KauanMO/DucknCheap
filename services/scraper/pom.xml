@@ -6,6 +6,7 @@
         <groupId>com.duckncheap</groupId>
         <artifactId>duckncheap-parent</artifactId>
         <version>0.0.1</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 	<groupId>com.DucknCheap</groupId>
 	<artifactId>scraper</artifactId>
