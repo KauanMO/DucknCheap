@@ -21,7 +21,10 @@ public class Product {
     private String description;
     private Double price;
     private Boolean active;
+    private String url;
+    private ValiableStoresEnum store;
 
+    @Builder.Default
     private final LocalDate createdAt = LocalDate.now();
 
     @OneToMany(mappedBy = "product")

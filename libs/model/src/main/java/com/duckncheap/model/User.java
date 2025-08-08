@@ -1,8 +1,7 @@
 package com.duckncheap.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Builder;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -11,6 +10,8 @@ import java.util.List;
 @Entity
 @Builder
 @Table(name="dnc_user")
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,6 +20,7 @@ public class User {
     private String email;
     private String password;
 
+    @Builder.Default
     private final LocalDate createdAt = LocalDate.now();
 
     @OneToMany(mappedBy = "user")

@@ -15,6 +15,7 @@ public class Purchase {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Builder.Default
     private final LocalDate createdAt = LocalDate.now();
 
     @OneToOne

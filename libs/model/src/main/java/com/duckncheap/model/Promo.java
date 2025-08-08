@@ -17,6 +17,7 @@ public class Promo {
 
     private Double price;
 
+    @Builder.Default
     private final LocalDate createdAt = LocalDate.now();
 
     @ManyToOne
