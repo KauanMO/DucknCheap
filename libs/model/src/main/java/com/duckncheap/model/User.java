@@ -23,6 +23,6 @@ public class User {
     @Builder.Default
     private final LocalDate createdAt = LocalDate.now();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Product> products;
 }
