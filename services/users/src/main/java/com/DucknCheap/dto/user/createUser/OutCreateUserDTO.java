@@ -1,4 +1,4 @@
-package com.DucknCheap.dto.user;
+package com.DucknCheap.dto.user.createUser;
 
 import com.duckncheap.model.User;
 

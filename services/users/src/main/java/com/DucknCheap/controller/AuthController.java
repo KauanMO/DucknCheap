@@ -16,8 +16,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(("users"))
+@RequestMapping("auth")
 @RequiredArgsConstructor
-public class UserController {
+public class AuthController {
+    private final UserService userService;
+    private final JwtUtil jwtUtil;
 
+    @PostMapping
+    public ResponseEntity<OutCreateUserDTO> register(@RequestBody @Valid InCreateUserDTO dto) {
+        User newUser = userService.create(dto);
+
+        return ResponseEntity.ok(new OutCreateUserDTO(newUser));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<OutLoginDTO> login(@RequestBody @Valid InLoginDTO dto) {
+        User userFound = userService.login(dto);
+
+        String token = jwtUtil.generateToken(userFound);
+
+        return ResponseEntity.ok(new OutLoginDTO(userFound, token));
+    }
 }

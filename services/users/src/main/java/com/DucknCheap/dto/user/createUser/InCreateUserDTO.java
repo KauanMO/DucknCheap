@@ -1,4 +1,4 @@
-package com.DucknCheap.dto.user;
+package com.DucknCheap.dto.user.createUser;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
