@@ -2,12 +2,14 @@ package com.duckncheap.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Builder;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Data
 @Entity
+@Builder
 @Table(name = "dnc_product")
 public class Product {
     @Id
@@ -19,8 +21,11 @@ public class Product {
     private String description;
     private Double price;
     private Boolean active;
+    private String url;
+    private ValiableStoresEnum store;
 
-    private LocalDate createdAt;
+    @Builder.Default
+    private final LocalDate createdAt = LocalDate.now();
 
     @OneToMany(mappedBy = "product")
     private List<Promo> promos;
