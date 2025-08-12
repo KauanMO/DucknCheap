@@ -11,6 +11,6 @@ public class ProductScrapPublisher {
     private final RabbitTemplate rabbitTemplate;
 
     public void sendCreateMessage(ProductScrapMessage message) {
-        rabbitTemplate.convertAndSend("products.factory", message);
+        rabbitTemplate.convertAndSend("products.factory.UtoS", message);
     }
 }

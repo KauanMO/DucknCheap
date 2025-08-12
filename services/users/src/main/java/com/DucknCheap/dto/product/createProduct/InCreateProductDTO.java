@@ -9,6 +9,9 @@ public record InCreateProductDTO(
         @NotNull
         @NotBlank
         String url,
-        String name
+        String name,
+        @NotNull
+        @NotBlank
+        String store
 ) {
 }

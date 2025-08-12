@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitConfig {
     @Bean
     public Queue queue() {
-        return new Queue("products.factory", true);
+        return new Queue("products.factory.UtoS", true);
     }
 
     @Bean
