@@ -2,7 +2,7 @@ package com.DucknCheap.service.product;
 
 import com.DucknCheap.dto.product.createProduct.InCreateProductDTO;
 import com.DucknCheap.security.SecurityUtils;
-import com.duckncheap.model.Product;
+import com.duckncheap.model.ValiableStoresEnum;
 import com.duckncheap.rabbitmq.ProductScrapMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,10 @@ public class ProductServiceImpl implements ProductService {
         productScrapPublisher.sendCreateMessage(
                 new ProductScrapMessage(inCreateProductDTO.url(),
                         SecurityUtils.getUserId(),
-                        inCreateProductDTO.name())
+                        inCreateProductDTO.name(),
+                        ValiableStoresEnum.valueOf(inCreateProductDTO
+                                .store()
+                                .toUpperCase()))
         );
     }
 }

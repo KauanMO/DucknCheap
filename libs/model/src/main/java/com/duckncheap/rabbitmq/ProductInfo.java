@@ -2,17 +2,20 @@ package com.duckncheap.rabbitmq;
 
 import com.duckncheap.model.ValiableStoresEnum;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-public class ProductScrapMessage implements Serializable {
-    private String productUrl;
+@Data
+@ToString
+public class ProductInfo {
+    private String url;
     private Long userId;
-    private String productName;
+    private String name;
     private ValiableStoresEnum store;
+    private String image;
+    private String description;
+    private Double price;
 }
