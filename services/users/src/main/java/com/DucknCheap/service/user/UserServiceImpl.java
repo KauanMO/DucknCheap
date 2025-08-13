@@ -39,4 +39,9 @@ public class UserServiceImpl implements UserService {
 
         return userFound;
     }
+
+    @Override
+    public User getById(Long id) {
+        return repository.findById(id).orElseThrow(UserNotFoundException::new);
+    }
 }
