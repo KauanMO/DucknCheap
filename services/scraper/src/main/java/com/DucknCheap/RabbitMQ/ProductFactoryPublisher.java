@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ProductInfoPublisher {
+public class ProductFactoryPublisher {
     private final RabbitTemplate rabbitTemplate;
 
     public void sendProductInfoMessage(ProductInfo message) {

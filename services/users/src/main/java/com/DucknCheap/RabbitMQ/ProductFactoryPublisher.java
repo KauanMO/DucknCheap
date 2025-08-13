@@ -1,4 +1,4 @@
-package com.DucknCheap.service.product;
+package com.DucknCheap.RabbitMQ;
 
 import com.duckncheap.rabbitmq.ProductScrapMessage;
 import lombok.RequiredArgsConstructor;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ProductScrapPublisher {
+public class ProductFactoryPublisher {
     private final RabbitTemplate rabbitTemplate;
 
     public void sendCreateMessage(ProductScrapMessage message) {
