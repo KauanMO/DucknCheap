@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class RabbitmqConsumer {
+public class ProductFactoryConsumer {
     private final ProductScrapperService productScrapperService;
 
     @RabbitListener(queues = "products.factory.UtoS")

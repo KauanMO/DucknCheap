@@ -1,6 +1,6 @@
 package com.DucknCheap.service;
 
-import com.DucknCheap.RabbitMQ.ProductInfoPublisher;
+import com.DucknCheap.RabbitMQ.ProductFactoryPublisher;
 import com.DucknCheap.utils.ProductInfoUtils;
 import com.DucknCheap.utils.ScrapperUtils;
 import com.duckncheap.rabbitmq.ProductInfo;
@@ -21,7 +21,7 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 public class ProductScrapperService {
-    private final ProductInfoPublisher publisher;
+    private final ProductFactoryPublisher publisher;
 
     public void WebScrapProduct(ProductScrapMessage scrapMessage) {
         WebDriver driver = getDriver();
