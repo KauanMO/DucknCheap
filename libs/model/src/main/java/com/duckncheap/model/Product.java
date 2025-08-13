@@ -1,8 +1,10 @@
 package com.duckncheap.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -10,6 +12,8 @@ import java.util.List;
 @Data
 @Entity
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "dnc_product")
 public class Product {
     @Id
@@ -18,9 +22,13 @@ public class Product {
 
     private String name;
     private String image;
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String description;
     private Double price;
     private Boolean active;
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String url;
     private ValiableStoresEnum store;
 
