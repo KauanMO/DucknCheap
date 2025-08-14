@@ -1,4 +1,4 @@
-package com.DucknCheap.RabbitMQ;
+package com.DucknCheap.RabbitMQ.product;
 
 import com.DucknCheap.service.ProductScrapperService;
 import com.duckncheap.rabbitmq.ProductScrapMessage;
