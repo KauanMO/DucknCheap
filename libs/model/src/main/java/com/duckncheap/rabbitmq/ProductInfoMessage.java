@@ -10,7 +10,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Data
 @ToString
-public class ProductInfo {
+public class ProductInfoMessage {
     private String url;
     private Long userId;
     private String name;

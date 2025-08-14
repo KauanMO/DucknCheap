@@ -1,4 +1,4 @@
-package com.DucknCheap.service.crud;
+package com.duckncheap.service.crud;
 
 import java.util.List;
 
