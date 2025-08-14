@@ -35,7 +35,7 @@ public class Product {
     @Builder.Default
     private final LocalDate createdAt = LocalDate.now();
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
     private List<Promo> promos;
 
     @ManyToOne
