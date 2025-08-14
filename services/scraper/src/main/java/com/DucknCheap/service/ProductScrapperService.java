@@ -1,9 +1,10 @@
 package com.DucknCheap.service;
 
-import com.DucknCheap.RabbitMQ.ProductFactoryPublisher;
+import com.DucknCheap.RabbitMQ.product.ProductFactoryPublisher;
 import com.DucknCheap.utils.ProductInfoUtils;
 import com.DucknCheap.utils.ScrapperUtils;
-import com.duckncheap.rabbitmq.ProductInfo;
+import com.duckncheap.model.ValiableStoresEnum;
+import com.duckncheap.rabbitmq.ProductInfoMessage;
 import com.duckncheap.rabbitmq.ProductScrapMessage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.RequiredArgsConstructor;
@@ -17,11 +18,12 @@ import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ProductScrapperService {
-    private final ProductFactoryPublisher publisher;
+    private final ProductFactoryPublisher productPublisher;
 
     public void WebScrapProduct(ProductScrapMessage scrapMessage) {
         WebDriver driver = getDriver();
@@ -54,7 +56,7 @@ public class ProductScrapperService {
 
         driver.quit();
 
-        ProductInfo productInfo = new ProductInfo(scrapMessage.getProductUrl(),
+        ProductInfoMessage productInfoMessage = new ProductInfoMessage(scrapMessage.getProductUrl(),
                 scrapMessage.getUserId(),
                 scrapMessage.getProductName() != null ? scrapMessage.getProductName() : productName,
                 scrapMessage.getStore(),
@@ -62,9 +64,29 @@ public class ProductScrapperService {
                 productDescription,
                 ProductInfoUtils.productPriceParser(productPrice));
 
-        publisher.sendProductInfoMessage(productInfo);
+        productPublisher.sendProductInfoMessage(productInfoMessage);
 
         System.out.println("Product sent to creation");
+    }
+
+    public Optional<Double> webScrapPromo(String productUrl, ValiableStoresEnum store) {
+        WebDriver driver = getDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        driver.get(productUrl);
+
+        Map<String, String> xpaths = ScrapperUtils.storeXPathDictionary.get(store);
+
+        checkNecessaryClicks(driver, wait, xpaths.get("necessary"), xpaths.get("image"));
+
+        try {
+            driver.findElement(By.xpath(xpaths.get("promoCheck")));
+            String stringPrice = driver.findElement(By.xpath(xpaths.get("price"))).getText();
+
+            return Optional.of(ProductInfoUtils.productPriceParser(stringPrice));
+        } catch (NoSuchElementException e) {
+            return Optional.empty();
+        }
     }
 
     public void checkNecessaryClicks(WebDriver driver, WebDriverWait wait, String clickXpath, String checkerXpath) {

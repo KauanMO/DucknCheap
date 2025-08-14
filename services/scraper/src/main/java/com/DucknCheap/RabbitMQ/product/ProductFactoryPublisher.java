@@ -1,16 +1,16 @@
-package com.DucknCheap.RabbitMQ;
+package com.DucknCheap.RabbitMQ.product;
 
-import com.duckncheap.rabbitmq.ProductInfo;
+import com.duckncheap.rabbitmq.ProductInfoMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 @RequiredArgsConstructor
 public class ProductFactoryPublisher {
     private final RabbitTemplate rabbitTemplate;
 
-    public void sendProductInfoMessage(ProductInfo message) {
+    public void sendProductInfoMessage(ProductInfoMessage message) {
         rabbitTemplate.convertAndSend("products.factory.StoU", message);
     }
 }
