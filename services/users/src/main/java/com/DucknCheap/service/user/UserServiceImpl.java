@@ -5,7 +5,7 @@ import com.DucknCheap.dto.user.login.InLoginDTO;
 import com.DucknCheap.repository.UserRepository;
 import com.DucknCheap.service.exceptions.EmailAlreadyUsedException;
 import com.DucknCheap.service.exceptions.IncorrectPasswordException;
-import com.DucknCheap.service.exceptions.UserNotFoundException;
+import com.duckncheap.exception.UserNotFoundException;
 import com.duckncheap.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
