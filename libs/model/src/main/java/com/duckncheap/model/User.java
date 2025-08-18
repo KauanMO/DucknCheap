@@ -19,6 +19,7 @@ public class User {
 
     private String email;
     private String password;
+    private Long chatId;
 
     @Builder.Default
     private final LocalDate createdAt = LocalDate.now();
