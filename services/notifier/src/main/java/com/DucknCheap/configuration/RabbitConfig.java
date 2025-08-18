@@ -1,7 +1,6 @@
 package com.DucknCheap.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -19,16 +18,6 @@ public class RabbitConfig {
     @Bean
     public ObjectMapper objectMapper() {
         return new ObjectMapper();
-    }
-
-    @Bean
-    public Queue productFactoryQueue() {
-        return new Queue("products.factory.StoU", true);
-    }
-
-    @Bean
-    public Queue promoNotifierQueue() {
-        return new Queue("promo.notifier.StoN", true);
     }
 
     @Bean

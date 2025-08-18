@@ -1,4 +1,4 @@
-package com.DucknCheap.service.exceptions;
+package com.duckncheap.exception;
 
 public class UserNotFoundException extends RuntimeException {
     public UserNotFoundException() {
