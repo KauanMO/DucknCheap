@@ -22,8 +22,13 @@ public class RabbitConfig {
     }
 
     @Bean
-    public Queue queue() {
+    public Queue productFactoryQueue() {
         return new Queue("products.factory.StoU", true);
+    }
+
+    @Bean
+    public Queue promoNotifierQueue() {
+        return new Queue("promo.notifier.StoN", true);
     }
 
     @Bean
