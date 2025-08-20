@@ -12,6 +12,7 @@ import com.duckncheap.rabbitmq.ProductInfoMessage;
 import com.duckncheap.rabbitmq.ProductScrapMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public Product create(ProductInfoMessage productInfoMessage) {
         User userFound = userService.getById(productInfoMessage.getUserId());
 
@@ -53,6 +55,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public List<Product> getAll() {
         return repository.findAll();
     }
