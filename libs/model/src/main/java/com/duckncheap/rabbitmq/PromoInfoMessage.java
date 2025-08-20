@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PromoInfoMessage {
     private Long chatId;
+    private Double price;
     private ProductInfoMessage productInfo;
 }
