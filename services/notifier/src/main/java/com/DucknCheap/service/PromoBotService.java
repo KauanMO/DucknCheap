@@ -24,18 +24,23 @@ public class PromoBotService extends DefaultAbsSender {
 
     public void sendPromo(PromoInfoMessage promoMessage) {
         String message = String.format(
-                "Promoção para o item: %s !! \n R$ %.2f \n \n %s",
+                "🔥 Promoção para o item: <b>%s</b>!!\nDE <s>R$%.2f</s> \nPOR R$%.2f\n\n<a href=\"%s\">Ver produto</a>",
                 promoMessage.getProductInfo().getName(),
                 promoMessage.getProductInfo().getPrice(),
+                promoMessage.getPrice(),
                 promoMessage.getProductInfo().getUrl()
         );
 
-        SendMessage sendMessage = new SendMessage(promoMessage.getChatId(), message);
+        SendMessage sendMessage = new SendMessage(
+                promoMessage.getChatId().toString(),
+                message
+        );
+        sendMessage.setParseMode("HTML");
 
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
-            System.out.println(e.getCause());
+            System.out.println(e.getMessage());
         }
     }
 }
