@@ -26,7 +26,7 @@ public class TelegramWebhookService extends TelegramWebhookBot {
 
         SendMessage response = new SendMessage();
         response.setChatId(chatId);
-        response.setText("Olá! 😊 pra começar a usar o DucknCheap, responda essa mensagem com esse modelo: /start <SEU ID/EMAIL NO SITE> ");
+        response.setText("Olá! 😊 pra começar a usar o DucknCheap, responda essa mensagem com esse modelo:\n\n/start <SEU ID/EMAIL NO SITE> ");
 
         if (update.hasMessage() && update.getMessage().hasText()) {
             String text = update.getMessage().getText();

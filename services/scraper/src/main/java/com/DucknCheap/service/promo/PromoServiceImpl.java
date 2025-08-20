@@ -1,11 +1,12 @@
 package com.DucknCheap.service.promo;
 
 import com.DucknCheap.dto.CreatePromoDTO;
-import com.DucknCheap.repository.PromoRepository;
+import com.duckncheap.repository.PromoRepository;
 import com.duckncheap.model.Product;
 import com.duckncheap.model.Promo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class PromoServiceImpl implements PromoService {
     private final PromoRepository repository;
 
     @Override
+    @Transactional
     public Promo create(CreatePromoDTO createPromoDTO) {
         Promo promo = Promo.builder()
                 .price(createPromoDTO.price())
@@ -26,6 +28,7 @@ public class PromoServiceImpl implements PromoService {
     }
 
     @Override
+    @Transactional
     public void deactivePromos(List<Long> ids) {
         List<Promo> promosFound = repository.findAllByIdIn(ids);
         for (Promo promo : promosFound) {
