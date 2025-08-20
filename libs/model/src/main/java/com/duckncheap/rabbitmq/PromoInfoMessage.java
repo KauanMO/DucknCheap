@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PromoInfoMessage {
-    private String chatId;
+    private Long chatId;
     private ProductInfoMessage productInfo;
 }
