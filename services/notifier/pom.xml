@@ -13,23 +13,20 @@
     <name>notifier</name>
     <description>Demo project for Spring Boot</description>
     <url/>
-    <licenses>
-        <license/>
-    </licenses>
-    <developers>
-        <developer/>
-    </developers>
-    <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
-    </scm>
+
     <properties>
         <java.version>21</java.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
     </properties>
+    
+    <repositories>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/KauanMO/DucknCheap</url>
+        </repository>
+    </repositories>
+    
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
