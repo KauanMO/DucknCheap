@@ -1,4 +1,4 @@
-package com.DucknCheap;
+package com.duckncheap;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

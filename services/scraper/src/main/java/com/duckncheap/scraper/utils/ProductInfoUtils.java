@@ -1,4 +1,4 @@
-package com.DucknCheap.utils;
+package com.duckncheap.scraper.utils;
 
 import java.text.NumberFormat;
 import java.text.ParseException;

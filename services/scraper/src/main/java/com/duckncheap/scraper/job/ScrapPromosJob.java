@@ -1,14 +1,14 @@
-package com.DucknCheap.job;
+package com.duckncheap.scraper.job;
 
-import com.DucknCheap.RabbitMQ.promo.PromoNotifierPublisher;
-import com.DucknCheap.dto.CreatePromoDTO;
-import com.DucknCheap.service.ProductScrapperService;
-import com.DucknCheap.service.product.ProductService;
-import com.DucknCheap.service.promo.PromoService;
-import com.duckncheap.model.Product;
-import com.duckncheap.model.Promo;
-import com.duckncheap.rabbitmq.ProductInfoMessage;
-import com.duckncheap.rabbitmq.PromoInfoMessage;
+import com.duckncheap.scraper.RabbitMQ.promo.PromoNotifierPublisher;
+import com.duckncheap.scraper.dto.CreatePromoDTO;
+import com.duckncheap.scraper.service.ProductScrapperService;
+import com.duckncheap.scraper.service.product.ProductService;
+import com.duckncheap.scraper.service.promo.PromoService;
+import com.duckncheap.shared.model.Product;
+import com.duckncheap.shared.model.Promo;
+import com.duckncheap.shared.rabbitmq.ProductInfoMessage;
+import com.duckncheap.shared.rabbitmq.PromoInfoMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,6 @@
-package com.DucknCheap.utils;
+package com.duckncheap.scraper.utils;
 
-import com.duckncheap.model.ValiableStoresEnum;
+import com.duckncheap.shared.model.ValiableStoresEnum;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
