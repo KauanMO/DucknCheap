@@ -1,0 +1,91 @@
+services:
+  notifier:
+    build: ./services/notifier
+    depends_on:
+      - postgres
+      - rabbitmq
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      TELEGRAM_TOKEN: ${TELEGRAM_TOKEN}
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USER: ${RABBITMQ_USER}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
+    ports:
+      - "8081:8081"
+    networks:
+      - duckncheap_network
+
+  scraper:
+    build: ./services/scraper
+    depends_on:
+      - postgres
+      - rabbitmq
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USER: ${RABBITMQ_USER}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
+    ports:
+      - "8082:8082"
+    networks:
+      - duckncheap_network
+
+  users:
+    build: ./services/users
+    depends_on:
+      - postgres
+      - rabbitmq
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      SECRET_KEY: ${SECRET_KEY}
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USER: ${RABBITMQ_USER}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
+    ports:
+      - "8080:8080"
+    networks:
+      - duckncheap_network
+
+  postgres:
+    image: postgres:15
+    container_name: database
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - duckncheap_network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
+    volumes:
+      - rabbitmq-lib:/var/lib/rabbitmq/
+      - rabbitmq-log:/var/log/rabbitmq
+    networks:
+      - duckncheap_network
+
+volumes:
+  postgres_data:
+  rabbitmq-lib:
+    driver: local
+  rabbitmq-log:
+    driver: local
+
+networks:
+  duckncheap_network:

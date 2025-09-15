@@ -8,9 +8,8 @@
         <version>0.0.1</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
-    <groupId>com.DucknCheap</groupId>
     <artifactId>notifier</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
     <name>notifier</name>
     <description>Demo project for Spring Boot</description>
     <url/>
@@ -67,8 +66,8 @@
 
         <dependency>
             <groupId>com.duckncheap</groupId>
-            <artifactId>model</artifactId>
-            <version>0.0.1</version>
+            <artifactId>shared</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
         <dependency>
@@ -85,7 +84,12 @@
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
-            <version>2.3.0</version>
+            <version>2.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>2.3.7</version>
         </dependency>
     </dependencies>
 
@@ -94,6 +98,13 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
