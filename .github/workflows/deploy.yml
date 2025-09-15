@@ -22,9 +22,7 @@ jobs:
                 host: ${{secrets.EC2_HOST}}
                 username: ${{secrets.EC2_USER}}
                 key: ${{secrets.EC2_SSH_KEY}}
-                source: |
-                  ./docker-compose.yml
-                  ./services
+                source: "./docker-compose.yml,./services"
                 target: "~/app"
 
             - name: Run docker compose
