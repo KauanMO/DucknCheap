@@ -21,6 +21,21 @@ jobs:
                 echo "GITHUB_ACTOR=${{ github.actor }}" >> $GITHUB_ENV
                 echo "GB_TOKEN=${{ secrets.GB_TOKEN }}" >> $GITHUB_ENV
 
+            - name: Configure Maven settings
+              run: |
+                mkdir -p ~/.m2
+                cat > ~/.m2/settings.xml <<EOF
+                <settings>
+                  <servers>
+                    <server>
+                      <id>github</id>
+                      <username>${{ github.actor }}</username>
+                      <password>${{ secrets.GITHUB_TOKEN }}</password>
+                    </server>
+                  </servers>
+                </settings>
+                EOF
+
             - name: Set up JDK 21
               uses: actions/setup-java@v3
               with:
