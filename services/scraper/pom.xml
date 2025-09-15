@@ -20,7 +20,7 @@
     <repositories>
         <repository>
             <id>github</id>
-            <url>https://maven.pkg.github.com/KauanMO/DucknCheap</url>
+            <url>https://${env.GITHUB_ACTOR}:${env.GB_TOKEN}@maven.pkg.github.com/KauanMO/DucknCheap</url>
         </repository>
     </repositories>
 
