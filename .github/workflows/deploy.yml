@@ -21,6 +21,13 @@ jobs:
                 echo "GITHUB_ACTOR=${{ github.actor }}" >> $GITHUB_ENV
                 echo "GB_TOKEN=${{ secrets.GB_TOKEN }}" >> $GITHUB_ENV
 
+            - name: Set up JDK 21
+              uses: actions/setup-java@v3
+              with:
+                java-version: '21'
+                distribution: 'temurin'
+                cache: maven
+
             - name: Build Users service
               run: |
                 cd services/users
