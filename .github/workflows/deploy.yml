@@ -15,22 +15,11 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v4
-              
-            - name: Setup Maven settings
-              run: |
-                mkdir -p ~/.m2
-                cat > ~/.m2/settings.xml <<EOF
-                <settings>
-                  <servers>
-                    <server>
-                      <id>github</id>
-                      <username>${{ github.actor }}</username>
-                      <password>${{ secrets.GB_TOKEN }}</password>
-                    </server>
-                  </servers>
-                </settings>
-                EOF
 
+            - name: Set GitHub Package credentials
+              run: |
+                echo "GITHUB_ACTOR=${{ github.actor }}" >> $GITHUB_ENV
+                echo "GB_TOKEN=${{ secrets.GB_TOKEN }}" >> $GITHUB_ENV
 
             - name: Build Users service
               run: |

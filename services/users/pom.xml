@@ -14,13 +14,6 @@
     <description>Demo project for Spring Boot</description>
     <url/>
 
-    <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
-    </scm>
-
     <properties>
         <java.version>21</java.version>
     </properties>
@@ -28,7 +21,7 @@
     <repositories>
         <repository>
             <id>github</id>
-            <url>https://maven.pkg.github.com/KauanMO/DucknCheap</url>
+            <url>https://${env.GITHUB_ACTOR}:${env.GB_TOKEN}@maven.pkg.github.com/KauanMO/DucknCheap</url>
         </repository>
     </repositories>
 
