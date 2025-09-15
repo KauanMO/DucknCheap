@@ -6,7 +6,7 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>model</artifactId>
+    <artifactId>shared</artifactId>
     <version>1.0.0</version>
 
     <packaging>jar</packaging>
