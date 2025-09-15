@@ -17,7 +17,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>libs/model</module>
+        <module>libs/shared</module>
         <module>services/notifier</module>
         <module>services/scraper</module>
         <module>services/users</module>
