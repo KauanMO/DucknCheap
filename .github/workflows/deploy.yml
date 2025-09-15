@@ -15,6 +15,21 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v4
+              
+            - name: Build Users service
+              run: |
+                cd services/users
+                mvn clean package -DskipTests
+              
+            - name: Build Scraper service
+              run: |
+                cd services/scraper
+                mvn clean package -DskipTests
+              
+            - name: Build Notifier service
+              run: |
+                cd services/notifier
+                mvn clean package -DskipTests
 
             - name: Copy files
               uses: appleboy/scp-action@v0.1.7
