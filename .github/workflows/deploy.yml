@@ -1,0 +1,44 @@
+name: AWS EC2 Deploy
+
+on:
+    pull_request: 
+        branches:
+            - main
+        types:
+            - closed
+
+jobs:
+    deploy:
+        if: github.event.pull_request.merged == true
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Copy files
+              uses: appleboy/scp-actions@v0.1.7
+              with:
+                host: ${{secrets.EC2_HOST}}
+                username: ${{secrets.EC2_USER}}
+                key: ${{secrets.EC2_SSH_KEY}}
+                source: "./docker-compose.yml"
+                target: "~/app"
+
+            - name: Run docker compose
+              uses: appleboy/ssh-activation@v0.1.10
+              with:
+                host: ${{secrets.EC2_HOST}}
+                username: ${{secrets.EC2_USER}}
+                key: ${{secrets.EC2_SSH_KEY}}
+                script: |
+                    cd ~/app
+                    export POSTGRES_USER=${{ secrets.POSTGRES_USER }}
+                    export POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+                    export POSTGRES_DB=${{ secrets.POSTGRES_DB }}
+                    export SECRET_KEY=${{ secrets.SECRET_KEY }}
+                    export TELEGRAM_TOKEN=${{ secrets.TELEGRAM_TOKEN }}
+                    export RABBITMQ_USER=${{ secrets.RABBITMQ_USER }}
+                    export RABBITMQ_PASSWORD=${{ secrets.RABBITMQ_PASSWORD }}
+                    docker compose pull
+                    docker compose up -d --remove-orphans
