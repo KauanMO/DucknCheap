@@ -1,14 +1,8 @@
 <project>
-    <parent>
-        <groupId>com.duckncheap</groupId>
-        <artifactId>duckncheap-parent</artifactId>
-        <version>0.0.1</version>
-        <relativePath>../../pom.xml</relativePath>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
+    <groupId>com.duckncheap</groupId>
     <artifactId>shared</artifactId>
-    <version>1.0.0</version>
-
+    <version>2.0.0</version>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -37,5 +31,4 @@
             <url>https://maven.pkg.github.com/KauanMO/DucknCheap</url>
         </repository>
     </distributionManagement>
-
 </project>
